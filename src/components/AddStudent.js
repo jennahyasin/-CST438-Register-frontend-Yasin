@@ -27,6 +27,7 @@ class AddStudent extends Component {
     };
   }
 
+  //takes care of the event when it is changed
   handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   };
@@ -35,17 +36,19 @@ class AddStudent extends Component {
     event.preventDefault();
     const {name, email} = this.state;
     const token = Cookies.get('XSRF-TOKEN');
-    
+    //uses backend to make a fetch call to post a new student
     fetch(`${SERVER_URL}/student/add/${email}/${name}`, {
       method: 'POST',
       headers: { 'X-XSRF-TOKEN': token }
     })
     .then(res => {
       if (res.ok) {
+        //if student is added with no errors, send out toast message
         toast.success("Student Successfully Added!", {
             position: toast.POSITION.BOTTOM_LEFT
         });
       } else {
+        //if student is not added due to an error 
         toast.error("Student NOT Added", {
             position: toast.POSITION.BOTTOM_LEFT
         });
@@ -56,6 +59,7 @@ class AddStudent extends Component {
   render() {
     const { name, email } = this.state;
 
+    // code to display on screen
     return (
       <div>
         <AppBar position="static" color="default">
