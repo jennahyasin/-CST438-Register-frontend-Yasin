@@ -93,7 +93,7 @@ class AddStudent extends Component {
             placeholder = "STUDENT EMAIL"
           />
           <br/>
-          <Button type="submit" variant = "contained" style = {{ backgroundColor: 'green', margin:10}}>
+          <Button id = "submitButton" type="submit" variant = "contained" style = {{ backgroundColor: 'green', margin:10}}>
              Add Student</Button>
         </form>
         <Button component={Link}
